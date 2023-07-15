@@ -1,0 +1,13 @@
+.container{
+    
+}
+
+.catTitle{
+    color: #53c28b;
+}
+.item{
+    display: flex;
+    gap: 100px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
