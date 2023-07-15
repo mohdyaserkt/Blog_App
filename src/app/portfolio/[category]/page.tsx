@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-const Category = () => {
-  return (
-    <div>Category</div>
-  )
+interface CategoryProps {
+  params: { category: string };
 }
 
-export default Category
+const Category: React.FC<CategoryProps> = ({ params }) => {
+  console.log(params);
+
+  return null;
+};
+
+export default Category;
