@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './page.module.css'
 import useSWR from 'swr'
+import { useSession } from 'next-auth/react'
  
 
 
@@ -31,6 +32,8 @@ const Dashboard = () => {
 //   }, [])
 //   console.log(data);
 
+  const session = useSession() 
+  console.log(session);
   
   
   return (
