@@ -29,7 +29,7 @@ const Blog: React.FC = async () => {
 
 
     <div className={styles.mainContainer}>
-      {data.map((item:any) => {
+      {data.map((item:any) => (
         <Link href='/blog/testid' className={styles.container} key={item.id}>
           <div className={styles.imageContainer}>
             <Image
@@ -45,7 +45,7 @@ const Blog: React.FC = async () => {
             <p className={styles.desc}>desc</p>
           </div>
         </Link>
-      })}
+      ))}
 
 
     </div>
