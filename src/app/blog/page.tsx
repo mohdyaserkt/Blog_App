@@ -30,7 +30,7 @@ const Blog: React.FC = async () => {
           <div className={styles.imageContainer}>
             <Image
               src={item.img}
-              alt="image of "
+              alt="image of post"
               width={400}
               height={250}
               className={styles.image}
@@ -38,7 +38,7 @@ const Blog: React.FC = async () => {
           </div>
           <div className={styles.content}>
             <h1 className={styles.title}>{item.title}</h1>
-            <p className={styles.desc}>desc</p>
+            <p className={styles.desc}>{item.desc}</p>
           </div>
         </Link>
       ))}
