@@ -15,9 +15,17 @@ async function getData(_id:string) {
 interface IdProps {
   params: { id: string };
 }
+// or Dynamic metadata
+export async function generateMetadata({ params }:IdProps) {
+  const data_meta:any = await getData(params.id)
 
+  return {
+    title:data_meta.title,
+    description:data_meta.desc
+  }
+}
 
-const BlogPost: React.FC <IdProps>= async({params}) => {
+const BlogPost: React.FC <IdProps>= async({params}) => { 
 const data:any = await getData(params.id)
 console.log(data);
 
