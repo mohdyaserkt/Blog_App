@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import Footer from '@/components/footer/footer'
 import ThemeProvider from '../context/themeContext'
+import AuthProvider from '@/components/AuthProvider/AuthProvider'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,11 +27,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <ThemeProvider>
-          <div className='container'>
-            <Navbar />
-            {children}
-            <Footer /> </div>
-            </ThemeProvider>
+          <AuthProvider>
+            <div className='container'>
+              <Navbar />
+              {children}
+              <Footer /> </div>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
