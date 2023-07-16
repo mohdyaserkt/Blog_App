@@ -1,17 +1,29 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
+import { notFound } from 'next/navigation';
+
+async function getData(id:string) {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+  if (!res.ok) {
+    return notFound()
+  }
+
+  return res.json()
+
+}
+interface IdProps {
+  params: { id: string };
+}
 
 
-
-
-
-const BlogPost: React.FC = () => {
+const BlogPost: React.FC <IdProps>= async({params}) => {
+const data:any = getData(params.id)
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.info}>
-          <h1 className={styles.title}>data.title</h1>
+          <h1 className={styles.title}>{data.title}</h1>
           <p className={styles.desc}>data.desc</p>
           <div className={styles.author}>
             <Image

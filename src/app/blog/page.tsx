@@ -3,18 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
 import { json } from 'stream/consumers';
+import { notFound } from 'next/navigation';
 
 
 
 async function getData() {
   const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  // Recommendation: handle errors
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
+    return notFound()
   }
 
   return res.json()
