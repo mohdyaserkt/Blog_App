@@ -29,7 +29,7 @@ const Blog: React.FC = async () => {
 
 
     <div className={styles.mainContainer}>
-      {data.map((item: { id: React.Key | null | undefined; title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }) => {
+      {data.map((item:any) => {
         <Link href='/blog/testid' className={styles.container} key={item.id}>
           <div className={styles.imageContainer}>
             <Image
