@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import styles from "./page.module.css";
+import { ThemeContext } from "../../../context/themeContext";
 
 
 const DarkModeToggle: React.FC = () => {
+    const { toggle,mode } = useContext(ThemeContext);
   
   return (
     <div className={styles.container} >
