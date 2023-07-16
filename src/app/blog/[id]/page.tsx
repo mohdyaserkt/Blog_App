@@ -18,7 +18,9 @@ interface IdProps {
 
 
 const BlogPost: React.FC <IdProps>= async({params}) => {
-const data:any = getData(params.id)
+const data:any = await getData(params.id)
+console.log(data);
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
