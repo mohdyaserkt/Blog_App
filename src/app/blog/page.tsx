@@ -26,7 +26,7 @@ const Blog: React.FC = async () => {
 
     <div className={styles.mainContainer}>
       {data.map((item:any) => (
-        <Link href='/blog/testid' className={styles.container} key={item._id}>
+        <Link href={`/blog/${item._id}`} className={styles.container} key={item._id}>
           <div className={styles.imageContainer}>
             <Image
               src={item.img}
