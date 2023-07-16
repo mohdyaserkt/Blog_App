@@ -3,7 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import Footer from '@/components/footer/footer'
-import ThemeProvider from '../../context/themeContext'
+import ThemeProvider from '../context/themeContext'
 
 
 const inter = Inter({ subsets: ['latin'] })

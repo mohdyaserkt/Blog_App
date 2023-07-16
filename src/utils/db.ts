@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const connect = async () => {
+export const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO);
   } catch (error) {
@@ -8,4 +8,4 @@ const connect = async () => {
   }
 };
 
-module.exports = connect;
+
