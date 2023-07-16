@@ -3,7 +3,11 @@ import Image from 'next/image';
 
 import styles from './page.module.css';
 import Button from '@/components/Button/Button';
-
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Lamamia Blogs contact',
+  description: 'contacts information ',
+}
 const ContactForm: React.FC = () => {
   return (
     <div className={styles.container}>
