@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 
 
 async function getData() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+  const res = await fetch('http://localhost:3000/api/posts')
   if (!res.ok) {
     return notFound()
   }
@@ -26,11 +26,11 @@ const Blog: React.FC = async () => {
 
     <div className={styles.mainContainer}>
       {data.map((item:any) => (
-        <Link href='/blog/testid' className={styles.container} key={item.id}>
+        <Link href='/blog/testid' className={styles.container} key={item._id}>
           <div className={styles.imageContainer}>
             <Image
-              src="https://images.pexels.com/photos/10474144/pexels-photo-10474144.jpeg"
-              alt=""
+              src={item.img}
+              alt="image of "
               width={400}
               height={250}
               className={styles.image}
