@@ -1,9 +1,11 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './page.module.css'
 import Link from 'next/link'
 
 const register = () => {
+
+  const [error, setError] = useState(false)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -19,6 +21,12 @@ const register = () => {
 
     // Rest of your code
   };
+
+  try {
+    
+  } catch (error) {
+    
+  }
 
   return (
     <div className={styles.container}>
