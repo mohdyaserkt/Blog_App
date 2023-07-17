@@ -13,6 +13,10 @@ interface Post {
 }
 
 export const GET = async (request: NextApiRequest, { params }: { params: { id: string } }) => {
+
+
+
+  
   const { id } = params;
   try {
     await connect();
