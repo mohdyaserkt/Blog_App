@@ -52,6 +52,7 @@ const register = () => {
         className={styles.input}
       />
       <button type="submit" className={styles.button}>Register</button>
+      {error && "Something went wrong!"}
       
     </form>
     <span className={styles.or}>- OR -</span>
