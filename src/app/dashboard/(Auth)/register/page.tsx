@@ -77,7 +77,7 @@ const register = () => {
       <span className={styles.or}>- OR -</span>
       <Link href="/dashboard/login" passHref legacyBehavior>
         <a className={styles.link}>Login with an existing account</a>
-      </Link>m
+      </Link>
     </div>
   )
 }
