@@ -75,7 +75,8 @@ const Dashboard = () => {
         }),
       });
       mutate();
-      e.currentTarget.reset();
+      const form = e.target as HTMLFormElement;
+      form.reset();
     } catch (err) {
       console.log(err);
     }
@@ -87,6 +88,7 @@ const Dashboard = () => {
         method: "DELETE",
       });
       mutate();
+     
     } catch (err) {
       console.log(err);
     }
