@@ -34,10 +34,20 @@ const Dashboard = () => {
 //   }, [])
 //   console.log(data);
 
+
+
+
   const session = useSession() 
   console.log(session);
   const router = useRouter()
 
+const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then((res) => res.json());
+
+const { data, mutate, error, isLoading } = useSWR(
+  `/api/posts?username=${session?.data?.user?.name}`,
+  fetcher
+);
+console.log(data)
   if(session.status==="loading"){
     return <p>Loading</p>
   }
