@@ -10,40 +10,40 @@ const register = () => {
   const router= useRouter()
 
 
-  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-    const form = e.target as HTMLFormElement;
-    const nameInput = form[0] as HTMLInputElement;
-    const emailInput = form[1] as HTMLInputElement;
-    const passwordInput = form[2] as HTMLInputElement;
+  const form = e.target as HTMLFormElement;
+  const nameInput = form[0] as HTMLInputElement;
+  const emailInput = form[1] as HTMLInputElement;
+  const passwordInput = form[2] as HTMLInputElement;
 
-    const name: string = nameInput.value;
-    const email: string = emailInput.value;
-    const password: string = passwordInput.value;
+  const name: string = nameInput.value;
+  const email: string = emailInput.value;
+  const password: string = passwordInput.value;
 
 
-    try {
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
+  try {
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    });
 
-      res.status===201&&router.push("/dashboard/login?success=Accout has been created")
+    res.status===201&&router.push("/dashboard/login?success=Accout has been created")
 
-      // Rest of your code
-    } catch (error) {
-      // Error handling
-    }
+    // Rest of your code
+  } catch (error) {
+    // Error handling
+  }
 
-  };
+};
 
 
 
