@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {images: {
-      domains: ['cdn2.iconfinder.com','images.pexels.com'],
-    },}
-
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+  },
+};
 module.exports = nextConfig
 
 
