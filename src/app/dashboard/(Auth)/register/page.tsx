@@ -4,7 +4,7 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-const register = () => {
+const Register = () => {
 
   const [error, setError] = useState(false)
   const router= useRouter()
@@ -82,4 +82,4 @@ const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
   )
 }
 
-export default register
+export default Register
