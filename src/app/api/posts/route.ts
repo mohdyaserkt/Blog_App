@@ -16,6 +16,8 @@ const username = url?.searchParams.get("username");
   try {
     await connect();
     const posts: Post[] = await Post.find(username ? { username } : {});
+    console.log(posts,"this are myposts....");
+    
     const postsString = JSON.stringify(posts);
     return new NextResponse(postsString, { status: 200 });
   } catch (error) {
