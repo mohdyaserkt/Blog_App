@@ -1,4 +1,3 @@
-import { NextApiRequest } from "next";
 import { NextRequest, NextResponse } from "next/server";
 import PostModel from "@/models/Post";
 import { connect } from "@/utils/db";
@@ -9,7 +8,7 @@ interface Post {
   content: string;
 }
 
-export const GET = async (request: NextApiRequest) => {
+export const GET = async (request: NextRequest | Request) => {
   const url = request.url ? new URL(request.url, "http://localhost") : null;
   const username = url?.searchParams.get("username");
 
