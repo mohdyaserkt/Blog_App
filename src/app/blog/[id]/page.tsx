@@ -51,7 +51,6 @@ console.log(data);
             src={data.img}
             alt=""
             layout="fill"
-            
             objectFit="cover"
             className={styles.image}
           />
