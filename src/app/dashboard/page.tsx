@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { TupleType } from "typescript";
 
 const Dashboard = () => {
   // const [data, setdata] = useState([])
@@ -30,15 +31,14 @@ const Dashboard = () => {
   //   }, [])
   //   console.log(data);
 
-  const session = useSession();
+  const session:any = useSession();
   console.log(session);
   const router = useRouter();
+  const fetcher = (...args: [RequestInfo, RequestInit?]) => fetch(...args).then((res) => res.json());
 
-  const fetcher = (...args: Parameters<typeof fetch>) =>
-    fetch(...args).then((res) => res.json());
 
   const { data, mutate, error, isLoading } = useSWR(
-    `/api/posts?username=${session?.data?.user?.name}`,
+    `/api/posts?username=${session?.data?.user.name}`,
     fetcher
   );
   console.log(data,"this is my data...");
