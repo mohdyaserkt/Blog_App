@@ -21,7 +21,7 @@ async function getData() {
 
 const Blog: React.FC = async () => {
   const data = await getData()
-  console.log(data);
+  console.log(data,"this is my data............");
   
   return (
 
