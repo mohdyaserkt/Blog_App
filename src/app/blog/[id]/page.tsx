@@ -50,9 +50,7 @@ console.log(data);
           <Image
             src={data.img}
             alt=""
-            width={800}
-            height={400}
-            
+            layout="fill"
             
             objectFit="cover"
             className={styles.image}
