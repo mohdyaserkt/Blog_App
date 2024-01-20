@@ -24,7 +24,7 @@ const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
 
 
   try {
-    const res = await fetch("/api/auth/register", {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
