@@ -5,11 +5,8 @@ import { getProviders, signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-type LoginProps = {
-  url: any; // Adjust the type as needed based on your requirements
-};
 
-const Login: React.FC<LoginProps> = ({ url }) => {
+const Login: React.FC = () => {
   const session = useSession();
   const router = useRouter();
   const params = useSearchParams();
