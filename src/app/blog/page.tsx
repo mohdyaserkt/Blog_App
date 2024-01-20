@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 
 
 async function getData() {
-  const res = await fetch(`/api/posts`,{ cache: 'no-store' })
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`,{ cache: 'no-store' })
   if (!res.ok) {
     return notFound()
   }
