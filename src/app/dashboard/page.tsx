@@ -38,7 +38,7 @@ const Dashboard = () => {
 
 
   const { data, mutate, error, isLoading } = useSWR(
-    `${process.env.NEXTAUTH_URL}/api/posts?username=${session?.data?.user.name}`,
+    `/api/posts?username=${session?.data?.user.name}`,
     fetcher
   );
   console.log(data,"this is my data...");
@@ -64,7 +64,7 @@ const Dashboard = () => {
     const img: string = imgInput.value;
     const content = contentInput.value;
     try {
-      await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, {
+      await fetch("/api/posts", {
         method: "POST",
         body: JSON.stringify({
           title,
@@ -84,7 +84,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${id}`, {
+      await fetch(`/api/posts/${id}`, {
         method: "DELETE",
       });
       mutate();
