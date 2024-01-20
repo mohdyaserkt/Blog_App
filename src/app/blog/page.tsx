@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 
 
 async function getData() {
-  const res = await fetch('http://localhost:3000/api/posts',r)
+  const res = await fetch('http://localhost:3000/api/posts')
   if (!res.ok) {
     return notFound()
   }
