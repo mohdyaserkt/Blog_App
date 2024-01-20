@@ -1,14 +1,15 @@
-"use client";
-import React, { FormEvent, FormEventHandler, ReactEventHandler, useEffect, useState } from "react";
+// use client;
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+
 type LoginProps = {
   url: any; // Adjust the type as needed based on your requirements
 };
 
-const Login:React.FC<LoginProps> = ({ url }) => {
+const Login: React.FC<LoginProps> = ({ url }) => {
   const session = useSession();
   const router = useRouter();
   const params = useSearchParams();
@@ -20,26 +21,30 @@ const Login:React.FC<LoginProps> = ({ url }) => {
     setSuccess(params.get("success") as string);
   }, [params]);
 
-  if (session.status === "loading") {
-    return <p>Loading...</p>;
-  }
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      router?.push("/dashboard");
+    }
+  }, [session.status, router]);
 
-  if (session.status === "authenticated") {
-    router?.push("/dashboard");
-  }
-
-  
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const email = (e.currentTarget[0] as HTMLInputElement).value;
     const password = (e.currentTarget[1] as HTMLInputElement).value;
-  
-    signIn("credentials", {
-      email,
-      password,
-    });
-  }
+
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false, // Change to true if you want to handle redirection manually
+      });
+
+      router?.push("/dashboard");
+    } catch (error) {
+      setError("Authentication failed. Please check your credentials.");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -47,21 +52,14 @@ const Login:React.FC<LoginProps> = ({ url }) => {
       <h2 className={styles.subtitle}>Please sign in to see the dashboard.</h2>
 
       <form onSubmit={handleSubmit} className={styles.form}>
-        <input
-          type="text"
-          placeholder="Email"
-          required
-          className={styles.input}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          className={styles.input}
-        />
-        <button className={styles.button}>Login</button>
-        {error && error}
+        <input type="text" placeholder="Email" required className={styles.input} />
+        <input type="password" placeholder="Password" required className={styles.input} />
+        <button type="submit" className={styles.button}>
+          Login
+        </button>
+        {error && <p className={styles.error}>{error}</p>}
       </form>
+
       <button
         onClick={() => {
           signIn("google");
@@ -70,18 +68,12 @@ const Login:React.FC<LoginProps> = ({ url }) => {
       >
         Login with Google
       </button>
+
       <span className={styles.or}>- OR -</span>
-      <Link className={styles.link} href="/dashboard/register">
-        Create new account
+
+      <Link href="/dashboard/register">
+        <a className={styles.link}>Create new account</a>
       </Link>
-      {/* <button
-        onClick={() => {
-          signIn("github");
-        }}
-        className={styles.button + " " + styles.github}
-      >
-        Login with Github
-      </button> */}
     </div>
   );
 };
