@@ -1,6 +1,6 @@
 import { NextApiRequest } from "next";
 import { NextRequest, NextResponse } from "next/server";
-import Post from "@/models/Post";
+import PostModel from "@/models/Post";
 import { connect } from "@/utils/db";
 
 interface Post {
@@ -10,14 +10,14 @@ interface Post {
 }
 
 export const GET = async (request: NextApiRequest) => {
-  const url = request.url ? new URL(request.url) : null;
-const username = url?.searchParams.get("username");
+  const url = request.url ? new URL(request.url, "http://localhost") : null;
+  const username = url?.searchParams.get("username");
 
   try {
     await connect();
-    const posts: Post[] = await Post.find(username ? { username } : {});
-    console.log(posts,"this are myposts....");
-    
+    const posts: Post[] = await PostModel.find(username ? { username } : {});
+    console.log(posts, "these are my posts....");
+
     const postsString = JSON.stringify(posts);
     return new NextResponse(postsString, { status: 200 });
   } catch (error) {
@@ -25,12 +25,10 @@ const username = url?.searchParams.get("username");
   }
 };
 
-
-
 export const POST = async (request: NextRequest) => {
   const body = await request.json();
 
-  const newPost = new Post(body);
+  const newPost = new PostModel(body);
 
   try {
     await connect();

@@ -1,4 +1,3 @@
-import { NextApiRequest } from "next";
 import { NextRequest, NextResponse } from "next/server";
 import Post from "@/models/Post";
 import { connect } from "@/utils/db";
@@ -12,11 +11,7 @@ interface Post {
   img: string;
 }
 
-export const GET = async (request: NextApiRequest, { params }: { params: { id: string } }) => {
-
-
-
-
+export const GET = async (request: NextRequest | Request, { params }: { params: { id: string } }) => {
   const { id } = params;
   try {
     await connect();
@@ -32,7 +27,6 @@ export const GET = async (request: NextApiRequest, { params }: { params: { id: s
     return new NextResponse("database error", { status: 500 });
   }
 };
-
 
 export const DELETE = async (request: NextRequest, { params }: { params: { id: string } }) => {
   const { id } = params;
