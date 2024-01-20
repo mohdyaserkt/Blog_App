@@ -1,11 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, FormEventHandler, ReactEventHandler, useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+type LoginProps = {
+  url: any; // Adjust the type as needed based on your requirements
+};
 
-const Login = ({ url }) => {
+const Login:React.FC<LoginProps> = ({ url }) => {
   const session = useSession();
   const router = useRouter();
   const params = useSearchParams();
@@ -13,8 +16,8 @@ const Login = ({ url }) => {
   const [success, setSuccess] = useState("");
 
   useEffect(() => {
-    setError(params.get("error"));
-    setSuccess(params.get("success"));
+    setError(params.get("error") as string);
+    setSuccess(params.get("success") as string);
   }, [params]);
 
   if (session.status === "loading") {
@@ -25,16 +28,18 @@ const Login = ({ url }) => {
     router?.push("/dashboard");
   }
 
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-
+    
+    const email = (e.currentTarget[0] as HTMLInputElement).value;
+    const password = (e.currentTarget[1] as HTMLInputElement).value;
+  
     signIn("credentials", {
       email,
       password,
     });
-  };
+  }
 
   return (
     <div className={styles.container}>
