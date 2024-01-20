@@ -4,7 +4,7 @@ import styles from './page.module.css';
 import { notFound } from 'next/navigation';
 
 async function getData(_id:string) {
-  const res = await fetch(`http://localhost:3000/api/posts/${_id}`)
+  const res = await fetch(`/api/posts/${_id}`)
   if (!res.ok) {
     return notFound()
   }
