@@ -69,7 +69,7 @@ const Login: React.FC = () => {
       <span className={styles.or}>- OR -</span>
 
       <Link href="/dashboard/register">
-        <a className={styles.link}>Create new account</a>
+        <p className={styles.link}>Create new account</p>
       </Link>
     </div>
   );
