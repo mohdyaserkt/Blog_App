@@ -34,7 +34,7 @@ const Blog: React.FC = async () => {
               src={item.img}
               alt="image of post"
               width={400}
-              height={250}
+              height={400}
               className={styles.image}
             />
           </div>
